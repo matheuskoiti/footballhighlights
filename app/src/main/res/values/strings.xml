@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">Lances pelo mundo</string>
+    <string name="title_activity_home">HomeActivity</string>
+
+    <!-- Home -->
+    <string name="home_error">Desculpe! Ocorreu um erro ao buscar as informações.\nTente novamente mais tarde.</string>
+
+    <!-- Home HighLight Item-->
+    <string name="home_highlight_item_match">Partida:</string>
+    <string name="home_highlight_item_date">Data:</string>
+    <string name="home_highlight_item_competition">Competição:</string>
+    <string name="title_activity_high_light">HighLightActivity</string>
+
+    <!-- Home HighLight Header -->
+    <string name="home_highlight_header_title">Lances pelo mundo</string>
+    <string name="home_highlight_item_header_sub_title">Assita aos melhores momentos de partidas de futebol ao redor do mundo!</string>
+
+    <!-- Home HighLight Video Item-->
+    <string name="home_highlight_header_sub_title">Toque nos itens abaixo para ver os vídeos dos lances do jogo!</string>
+
+</resources>
