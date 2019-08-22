@@ -20,7 +20,7 @@ import kotlinx.android.synthetic.main.highlight_video_header.view.*
 import kotlinx.android.synthetic.main.highlight_video_item.view.*
 import org.w3c.dom.Text
 
-class HighLightsVideoAdapter(val context : Context, private val highLightVideoDataList: List<HighLightVideo>, private val title: String) :
+class HighLightsVideoAdapter(val context : Context, private val highLightVideoDataList: List<HighLightVideo>, private val title: String, private val competition: String) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private val HEADER_VIEW_TYPE = 0
@@ -47,6 +47,7 @@ class HighLightsVideoAdapter(val context : Context, private val highLightVideoDa
             }
         } else if (holder is HighLightVideoHeaderViewHolder) {
             holder.headerTitle.text = title
+            holder.headerCompetition.text = competition
         }
     }
 
@@ -67,5 +68,6 @@ class HighLightsVideoAdapter(val context : Context, private val highLightVideoDa
 
     class HighLightVideoHeaderViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val headerTitle : TextView = view.highlight_video_header_title
+        val headerCompetition : TextView = view.highlight_video_header_competition
     }
 }

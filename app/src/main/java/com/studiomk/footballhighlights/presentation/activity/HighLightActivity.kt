@@ -36,7 +36,7 @@ class HighLightActivity : AppCompatActivity(), HighLightContract.View {
         setContentView(R.layout.activity_high_light)
 
         viewManager = LinearLayoutManager(this)
-        viewAdapter = HighLightsVideoAdapter(this, highLight.video, highLight.title)
+        viewAdapter = HighLightsVideoAdapter(this, highLight.video, highLight.title, highLight.competition.name)
 
         highlight_recycler_view?.apply {
             setHasFixedSize(true)
