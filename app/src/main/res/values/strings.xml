@@ -13,7 +13,7 @@
 
     <!-- Home HighLight Header -->
     <string name="home_highlight_header_title">Lances pelo mundo</string>
-    <string name="home_highlight_item_header_sub_title">Assita aos melhores momentos de partidas de futebol ao redor do mundo!</string>
+    <string name="home_highlight_item_header_sub_title">Assista aos melhores momentos de partidas de futebol ao redor do mundo!</string>
 
     <!-- Home HighLight Video Item-->
     <string name="home_highlight_header_sub_title">Toque nos itens abaixo para ver os vídeos dos lances do jogo!</string>
