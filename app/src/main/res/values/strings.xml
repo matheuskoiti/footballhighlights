@@ -4,6 +4,8 @@
 
     <!-- Home -->
     <string name="home_error">Desculpe! Ocorreu um erro ao buscar as informações.\nTente novamente mais tarde.</string>
+    <string name="home_search">Busque por lances! </string>
+    <string name="home_search_hint">Busque pela partida ou competição </string>
 
     <!-- Home HighLight Item-->
     <string name="home_highlight_item_match">Partida:</string>

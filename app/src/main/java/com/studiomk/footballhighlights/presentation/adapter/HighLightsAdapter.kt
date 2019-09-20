@@ -4,6 +4,8 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Filter
+import android.widget.Filterable
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -14,11 +16,15 @@ import com.squareup.picasso.Picasso
 import com.studiomk.footballhighlights.domain.model.HighLight
 import com.studiomk.footballhighlights.presentation.activity.HomeActivity
 
-class HighLightsAdapter(val context : Context, private val highLightDataList: List<HighLight>) :
-    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class HighLightsAdapter(val context : Context,
+                        private var highLightDataList: List<HighLight>) :
+    RecyclerView.Adapter<RecyclerView.ViewHolder>(), Filterable {
 
     private val HEADER_VIEW_TYPE = 0
     private val ITEM_VIEW_TYPE = 1
+    private var highLightDataListFiltered: List<HighLight> = highLightDataList
+    private val completeHighLightDataListFiltered: List<HighLight> = highLightDataList
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return if (viewType == HEADER_VIEW_TYPE) {
@@ -54,6 +60,34 @@ class HighLightsAdapter(val context : Context, private val highLightDataList: Li
             return HEADER_VIEW_TYPE
         }
         return ITEM_VIEW_TYPE
+    }
+
+    override fun getFilter(): Filter {
+        return object : Filter() {
+            override fun performFiltering(charSequence: CharSequence): FilterResults {
+                val charString = charSequence.toString()
+                if (charString.isEmpty()) {
+                    highLightDataList = completeHighLightDataListFiltered
+                } else {
+                    val filteredList = arrayListOf<HighLight>()
+                    for (row in highLightDataList) {
+                        if (row.competition.name.toLowerCase().contains(charString.toLowerCase()) || row.title.toLowerCase().contains(charString.toLowerCase())) {
+                            filteredList.add(row)
+                        }
+                    }
+                    highLightDataList = filteredList
+                }
+
+                val filterResults = FilterResults()
+                filterResults.values = highLightDataListFiltered
+                return filterResults
+            }
+
+            override fun publishResults(charSequence: CharSequence, filterResults: FilterResults) {
+                highLightDataListFiltered = filterResults.values as ArrayList<HighLight>
+                notifyDataSetChanged()
+            }
+        }
     }
 
     class HighLightViewHolder(view: View) : RecyclerView.ViewHolder(view) {

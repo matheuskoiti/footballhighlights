@@ -13,16 +13,25 @@ import kotlinx.android.synthetic.main.activity_home.*
 import org.koin.android.ext.android.inject
 import org.koin.core.parameter.parametersOf
 import org.koin.standalone.KoinComponent
+import android.app.SearchManager
+import android.content.Context
+import android.view.Menu
+import android.widget.SearchView
+import android.view.MenuItem
+import android.view.inputmethod.InputMethodManager
+
 
 class HomeActivity : AppCompatActivity(), HomeContract.View, KoinComponent {
 
     private val presenter: HomeContract.Presenter by inject { parametersOf(this) }
     private lateinit var viewAdapter: RecyclerView.Adapter<*>
     private lateinit var viewManager: RecyclerView.LayoutManager
+    private lateinit var searchView: SearchView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
+        setToolbar()
         home_loading_lootie?.imageAssetsFolder = "images/"
         presenter.initPresenter()
     }
@@ -31,6 +40,36 @@ class HomeActivity : AppCompatActivity(), HomeContract.View, KoinComponent {
         home_floating_button?.setOnClickListener {
             presenter.initPresenter()
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.main_menu, menu)
+        val searchManager = getSystemService(Context.SEARCH_SERVICE) as SearchManager
+        searchView = menu.findItem(R.id.action_search).actionView as SearchView
+        searchView.setSearchableInfo(
+            searchManager.getSearchableInfo(componentName)
+        )
+        searchView.queryHint = getString(R.string.home_search_hint)
+        searchView.maxWidth = Integer.MAX_VALUE
+        searchView.setOnQueryTextListener(object: SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                (viewAdapter as HighLightsAdapter).filter.filter(query)
+                return false
+            }
+
+            override fun onQueryTextChange(query: String?): Boolean {
+                (viewAdapter as HighLightsAdapter).filter.filter(query)
+                return false
+            }
+        })
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val id = item.itemId
+        return if (id == R.id.action_search) {
+            true
+        } else super.onOptionsItemSelected(item)
     }
 
     override fun buildHighLightList(list: List<HighLight>) {
@@ -45,7 +84,13 @@ class HomeActivity : AppCompatActivity(), HomeContract.View, KoinComponent {
     }
 
     override fun showLoading() {
+        hideKeyboard()
         home_loading?.visibility = View.VISIBLE
+    }
+
+    private fun hideKeyboard() {
+        val inputManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        inputManager.hideSoftInputFromWindow(currentFocus?.windowToken, InputMethodManager.HIDE_NOT_ALWAYS)
     }
 
     override fun hideLoading() {
@@ -64,5 +109,12 @@ class HomeActivity : AppCompatActivity(), HomeContract.View, KoinComponent {
 
     override fun openHighLightActivity(highLight: HighLight) {
         startActivity(HighLightActivity.createIntent(this, highLight))
+    }
+
+    private fun setToolbar() {
+        setSupportActionBar(home_toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.title = getString(R.string.home_search)
+        supportActionBar?.setDisplayHomeAsUpEnabled(false)
     }
 }
