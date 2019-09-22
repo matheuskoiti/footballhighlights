@@ -40,12 +40,28 @@
     <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/home_recycler_view"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@id/home_toolbar_layout"
+            android:layout_height="wrap_content"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
     </androidx.recyclerview.widget.RecyclerView>
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/home_highlight_not_found_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/home_recycler_view"
+            android:layout_marginTop="16dp"
+            android:visibility="gone">
+
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/home_highlight_item_not_found"
+                android:textSize="16sp"
+                android:textColor="@color/darkGray"
+                android:textAlignment="center" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
     <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/home_floating_button"
             android:layout_width="wrap_content"

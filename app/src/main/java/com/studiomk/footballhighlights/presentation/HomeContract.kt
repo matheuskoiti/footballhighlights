@@ -11,6 +11,7 @@ class HomeContract {
         fun showErrorMessage()
         fun hideErrorMessage()
         fun openHighLightActivity(highLight: HighLight)
+        fun cleanSearchView()
     }
 
     interface Presenter {

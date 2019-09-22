@@ -12,6 +12,7 @@
     <string name="home_highlight_item_date">Data:</string>
     <string name="home_highlight_item_competition">Competição:</string>
     <string name="title_activity_high_light">HighLightActivity</string>
+    <string name="home_highlight_item_not_found">A busca não encontrou nenhum jogo</string>
 
     <!-- Home HighLight Header -->
     <string name="home_highlight_header_title">Lances pelo mundo</string>

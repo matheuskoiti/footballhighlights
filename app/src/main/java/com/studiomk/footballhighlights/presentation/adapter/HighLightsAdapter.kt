@@ -70,12 +70,13 @@ class HighLightsAdapter(val context : Context,
                     highLightDataList = completeHighLightDataListFiltered
                 } else {
                     val filteredList = arrayListOf<HighLight>()
-                    for (row in highLightDataList) {
+                    for (row in completeHighLightDataListFiltered) {
                         if (row.competition.name.toLowerCase().contains(charString.toLowerCase()) || row.title.toLowerCase().contains(charString.toLowerCase())) {
                             filteredList.add(row)
                         }
                     }
                     highLightDataList = filteredList
+
                 }
 
                 val filterResults = FilterResults()
@@ -84,10 +85,17 @@ class HighLightsAdapter(val context : Context,
             }
 
             override fun publishResults(charSequence: CharSequence, filterResults: FilterResults) {
+                if (highLightDataList.isEmpty())  {
+                    showNoResultsFound()
+                }
                 highLightDataListFiltered = filterResults.values as ArrayList<HighLight>
                 notifyDataSetChanged()
             }
         }
+    }
+
+    private fun showNoResultsFound() {
+        (context as HomeActivity).showEmptySearchResultText()
     }
 
     class HighLightViewHolder(view: View) : RecyclerView.ViewHolder(view) {

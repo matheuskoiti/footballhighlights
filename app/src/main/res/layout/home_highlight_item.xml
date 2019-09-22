@@ -98,4 +98,5 @@
                 app:layout_constraintStart_toEndOf="@+id/home_highlight_item_thumbnail"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </androidx.cardview.widget.CardView>

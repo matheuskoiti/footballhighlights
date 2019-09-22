@@ -39,6 +39,7 @@ class HomeActivity : AppCompatActivity(), HomeContract.View, KoinComponent {
     override fun initListeners() {
         home_floating_button?.setOnClickListener {
             presenter.initPresenter()
+            cleanSearchView()
         }
     }
 
@@ -53,11 +54,13 @@ class HomeActivity : AppCompatActivity(), HomeContract.View, KoinComponent {
         searchView.maxWidth = Integer.MAX_VALUE
         searchView.setOnQueryTextListener(object: SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(query: String?): Boolean {
+                hideEmptySearchResultText()
                 (viewAdapter as HighLightsAdapter).filter.filter(query)
                 return false
             }
 
             override fun onQueryTextChange(query: String?): Boolean {
+                hideEmptySearchResultText()
                 (viewAdapter as HighLightsAdapter).filter.filter(query)
                 return false
             }
@@ -86,29 +89,33 @@ class HomeActivity : AppCompatActivity(), HomeContract.View, KoinComponent {
     override fun showLoading() {
         hideKeyboard()
         home_loading?.visibility = View.VISIBLE
-    }
-
-    private fun hideKeyboard() {
-        val inputManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        inputManager.hideSoftInputFromWindow(currentFocus?.windowToken, InputMethodManager.HIDE_NOT_ALWAYS)
+        home_toolbar_layout?.visibility = View.GONE
     }
 
     override fun hideLoading() {
         home_loading?.visibility = View.GONE
+        home_toolbar_layout?.visibility = View.VISIBLE
     }
 
     override fun showErrorMessage() {
         home_error?.visibility = View.VISIBLE
         home_recycler_view?.visibility = View.GONE
+        home_highlight_not_found_text?.visibility = View.GONE
     }
 
     override fun hideErrorMessage() {
         home_error?.visibility = View.GONE
         home_recycler_view?.visibility = View.VISIBLE
+        home_highlight_not_found_text?.visibility = View.GONE
     }
 
     override fun openHighLightActivity(highLight: HighLight) {
         startActivity(HighLightActivity.createIntent(this, highLight))
+    }
+
+    override fun cleanSearchView() {
+        searchView.setQuery("", false)
+        searchView.clearFocus()
     }
 
     private fun setToolbar() {
@@ -116,5 +123,18 @@ class HomeActivity : AppCompatActivity(), HomeContract.View, KoinComponent {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.title = getString(R.string.home_search)
         supportActionBar?.setDisplayHomeAsUpEnabled(false)
+    }
+
+    fun showEmptySearchResultText() {
+        home_highlight_not_found_text?.visibility = View.VISIBLE
+    }
+
+    fun hideEmptySearchResultText() {
+        home_highlight_not_found_text?.visibility = View.GONE
+    }
+
+    private fun hideKeyboard() {
+        val inputManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        inputManager.hideSoftInputFromWindow(currentFocus?.windowToken, InputMethodManager.HIDE_NOT_ALWAYS)
     }
 }
