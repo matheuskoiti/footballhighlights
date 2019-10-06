@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Lances pelo mundo</string>
+    <string name="app_name">Futebol pelo mundo</string>
     <string name="title_activity_home">HomeActivity</string>
 
     <!-- Home -->
@@ -15,7 +15,7 @@
     <string name="home_highlight_item_not_found">A busca não encontrou nenhum jogo</string>
 
     <!-- Home HighLight Header -->
-    <string name="home_highlight_header_title">Lances pelo mundo</string>
+    <string name="home_highlight_header_title">Futebol pelo mundo</string>
     <string name="home_highlight_item_header_sub_title">Assista aos melhores momentos de partidas de futebol ao redor do mundo!</string>
 
     <!-- Home HighLight Video Item-->
