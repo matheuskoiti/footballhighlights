@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.studiomk.footballhighlights.R
 import com.studiomk.footballhighlights.domain.model.HighLight
+import com.studiomk.footballhighlights.domain.model.HighLightVideo
 import com.studiomk.footballhighlights.presentation.HighLightContract
 import com.studiomk.footballhighlights.presentation.adapter.HighLightsAdapter
 import com.studiomk.footballhighlights.presentation.adapter.HighLightsVideoAdapter
@@ -45,7 +46,11 @@ class HighLightActivity : AppCompatActivity(), HighLightContract.View {
         }
     }
 
-    override fun onItemClick(url: String) {
-        startActivity(WebViewVideoActivity.createIntent(this, url))
+    override fun onItemClick(highLightVideo: HighLightVideo) {
+        presenter.prepareWebView(highLightVideo)
+    }
+
+    override fun openWebViewActivity(highLightVideo: HighLightVideo) {
+        startActivity(WebViewVideoActivity.createIntent(this, highLightVideo.videoUrl))
     }
 }

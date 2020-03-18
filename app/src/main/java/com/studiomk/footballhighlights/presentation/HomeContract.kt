@@ -10,11 +10,13 @@ class HomeContract {
         fun hideLoading()
         fun showErrorMessage()
         fun hideErrorMessage()
-        fun openHighLightActivity(highLight: HighLight)
+        fun openHighLight(highLight: HighLight)
         fun cleanSearchView()
+        fun openHighLightActivity(highLight: HighLight)
     }
 
     interface Presenter {
         fun initPresenter()
+        fun prepareHighLightOpening(highLight: HighLight)
     }
 }

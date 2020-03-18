@@ -19,6 +19,7 @@ import android.view.Menu
 import android.widget.SearchView
 import android.view.MenuItem
 import android.view.inputmethod.InputMethodManager
+import com.studiomk.footballhighlights.data.analytics.FirebaseAnalyticsService
 
 
 class HomeActivity : AppCompatActivity(), HomeContract.View, KoinComponent {
@@ -107,6 +108,10 @@ class HomeActivity : AppCompatActivity(), HomeContract.View, KoinComponent {
         home_error?.visibility = View.GONE
         home_recycler_view?.visibility = View.VISIBLE
         home_highlight_not_found_text?.visibility = View.GONE
+    }
+
+    override fun openHighLight(highLight: HighLight) {
+        presenter.prepareHighLightOpening(highLight)
     }
 
     override fun openHighLightActivity(highLight: HighLight) {

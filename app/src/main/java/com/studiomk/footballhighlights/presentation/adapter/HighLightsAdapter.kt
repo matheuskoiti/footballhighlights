@@ -48,7 +48,7 @@ class HighLightsAdapter(val context : Context,
             holder.itemCompetition.text = currentHighLight.competition.name
             holder.itemDate.text = currentHighLight.formattedDate
             holder.itemLayout.setOnClickListener {
-                (context as HomeActivity).openHighLightActivity(currentHighLight)
+                (context as HomeActivity).openHighLight(currentHighLight)
             }
         }
     }

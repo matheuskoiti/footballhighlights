@@ -43,7 +43,7 @@ class HighLightsVideoAdapter(val context : Context, private val highLightVideoDa
             val currentHighLightVideo = highLightVideoDataList[position - 1]
             holder.itemTitle.text = currentHighLightVideo.title
             holder.itemLayout.setOnClickListener {
-                (context as HighLightActivity).onItemClick(currentHighLightVideo.videoUrl)
+                (context as HighLightActivity).onItemClick(currentHighLightVideo)
             }
         } else if (holder is HighLightVideoHeaderViewHolder) {
             holder.headerTitle.text = title

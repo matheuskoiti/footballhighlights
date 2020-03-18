@@ -1,5 +1,6 @@
 package com.studiomk.footballhighlights.presentation.presenter
 
+import com.studiomk.footballhighlights.data.analytics.FirebaseAnalyticsService
 import com.studiomk.footballhighlights.domain.model.HighLight
 import com.studiomk.footballhighlights.domain.usecase.FootBallUseCase
 import com.studiomk.footballhighlights.presentation.HomeContract
@@ -11,6 +12,7 @@ import org.koin.standalone.inject
 class HomePresenter(private var view: HomeContract.View) : HomeContract.Presenter, KoinComponent {
 
     private val footBallUseCase : FootBallUseCase by inject()
+    private val firebaseAnalyticsService : FirebaseAnalyticsService by inject()
 
     override fun initPresenter() {
         fetchFootBallHighLights()
@@ -34,5 +36,10 @@ class HomePresenter(private var view: HomeContract.View) : HomeContract.Presente
                 view.hideLoading()
             }
         })
+    }
+
+    override fun prepareHighLightOpening(highLight: HighLight) {
+        firebaseAnalyticsService.logEvent(category = "highLight", action = "click-highLight", label = "${highLight.competition.name}:${highLight.title}")
+        view.openHighLightActivity(highLight)
     }
 }
