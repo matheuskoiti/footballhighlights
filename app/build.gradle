@@ -4,6 +4,8 @@ apply plugin: 'com.google.gms.google-services'
 
 apply plugin: 'com.google.firebase.crashlytics'
 
+apply plugin: 'com.google.firebase.firebase-perf'
+
 apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
@@ -68,4 +70,7 @@ dependencies {
     // Firebase Crashlytics
     implementation 'com.google.firebase:firebase-analytics:17.2.3'
     implementation 'com.google.firebase:firebase-crashlytics:17.0.0-beta01'
+
+    // Firebase Performance
+    implementation 'com.google.firebase:firebase-perf:18.0.1'
 }
