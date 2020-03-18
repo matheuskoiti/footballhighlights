@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "628182880530",
+    "firebase_url": "https://futebol-pelo-mundo.firebaseio.com",
+    "project_id": "futebol-pelo-mundo",
+    "storage_bucket": "futebol-pelo-mundo.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:628182880530:android:bde3881ff590415269e3cb",
+        "android_client_info": {
+          "package_name": "com.studiomk.footballhighlights"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "628182880530-g33br23hplg67vjf15trn0nkdtof8j0d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAUbLZiEc8BvZNrhV8h8FDLXLjWpXzifmw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "628182880530-g33br23hplg67vjf15trn0nkdtof8j0d.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
