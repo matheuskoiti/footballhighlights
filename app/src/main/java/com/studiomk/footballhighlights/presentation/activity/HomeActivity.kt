@@ -24,7 +24,7 @@ import android.view.inputmethod.InputMethodManager
 class HomeActivity : AppCompatActivity(), HomeContract.View, KoinComponent {
 
     private val presenter: HomeContract.Presenter by inject { parametersOf(this) }
-    private lateinit var viewAdapter: RecyclerView.Adapter<*>
+    private var viewAdapter: RecyclerView.Adapter<*>? = null
     private lateinit var viewManager: RecyclerView.LayoutManager
     private lateinit var searchView: SearchView
 
@@ -55,13 +55,13 @@ class HomeActivity : AppCompatActivity(), HomeContract.View, KoinComponent {
         searchView.setOnQueryTextListener(object: SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(query: String?): Boolean {
                 hideEmptySearchResultText()
-                (viewAdapter as HighLightsAdapter).filter.filter(query)
+                (viewAdapter as? HighLightsAdapter)?.filter?.filter(query)
                 return false
             }
 
             override fun onQueryTextChange(query: String?): Boolean {
                 hideEmptySearchResultText()
-                (viewAdapter as HighLightsAdapter).filter.filter(query)
+                (viewAdapter as? HighLightsAdapter)?.filter?.filter(query)
                 return false
             }
         })
