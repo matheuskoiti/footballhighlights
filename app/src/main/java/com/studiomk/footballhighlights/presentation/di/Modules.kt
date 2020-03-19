@@ -23,6 +23,6 @@ val applicationModule = module(override = true) {
     single { FootBallRepository() }
     single { FootBallUseCase() }
     single { HighLightMapper() }
-    factory<FirebaseAnalyticsService> { FirebaseAnalyticsImplService().init(androidContext()) }
+    single<FirebaseAnalyticsService> { FirebaseAnalyticsImplService().init(androidContext()) }
     single<SharedPreferences> { androidContext().getSharedPreferences("SharedPreferences", Context.MODE_PRIVATE) }
 }
