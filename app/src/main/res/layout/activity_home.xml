@@ -1,41 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
         tools:context=".presentation.activity.HomeActivity">
 
     <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/home_toolbar_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:elevation="0dp"
+            android:fitsSystemWindows="true"
             android:theme="@style/AppTheme.AppBarOverlay">
 
         <androidx.appcompat.widget.Toolbar
                 android:id="@+id/home_toolbar"
                 android:layout_width="match_parent"
+                app:elevation="0dp"
                 android:layout_height="?attr/actionBarSize"
-                android:background="@color/colorPrimary"
-                app:popupTheme="@style/AppTheme.PopupOverlay" />
+                android:background="@color/colorPrimaryDark"
+                app:layout_scrollFlags="scroll|enterAlways" />
 
     </com.google.android.material.appbar.AppBarLayout>
-
-    <TextView
-            android:id="@+id/home_error"
-            android:visibility="gone"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginTop="40dp"
-            android:textColor="@color/darkGray"
-            android:textAlignment="center"
-            android:textSize="24sp"
-            android:layout_centerInParent="true"
-            android:text="@string/home_error" />
 
     <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/home_recycler_view"
@@ -45,54 +33,70 @@
 
     </androidx.recyclerview.widget.RecyclerView>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <TextView
             android:id="@+id/home_highlight_not_found_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/home_recycler_view"
-            android:layout_marginTop="16dp"
-            android:visibility="gone">
-
-        <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/home_highlight_item_not_found"
-                android:textSize="16sp"
-                android:textColor="@color/darkGray"
-                android:textAlignment="center" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/home_floating_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentEnd="true"
-            android:outlineAmbientShadowColor="@color/colorPrimary"
-            android:outlineSpotShadowColor="@color/colorPrimary"
-            android:src="@drawable/ic_round_update_24px"
-            app:borderWidth="0dp"
-            android:backgroundTint="@color/colorPrimary"
-            android:layout_margin="16dp" />
+            android:text="@string/home_highlight_item_not_found"
+            android:textSize="16sp"
+            android:textColor="@color/darkGray"
+            app:layout_anchor="@id/home_recycler_view"
+            app:layout_anchorGravity="bottom"
+            android:layout_gravity="bottom"
+            android:padding="8dp"
+            android:textAlignment="center" />
 
     <RelativeLayout
-            android:id="@+id/home_loading"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:visibility="gone"
-            android:clickable="true"
-            android:focusable="true"
-            android:background="@color/white">
+            android:layout_height="match_parent">
 
-        <com.airbnb.lottie.LottieAnimationView
-                android:id="@+id/home_loading_lootie"
+        <TextView
+                android:id="@+id/home_error"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="40dp"
+                android:textColor="@color/darkGray"
+                android:textAlignment="center"
+                android:textSize="24sp"
+                android:layout_centerInParent="true"
+                android:text="@string/home_error" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/home_floating_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                app:lottie_autoPlay="true"
-                app:lottie_fileName="loading.json"
-                app:lottie_loop="true" />
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentEnd="true"
+                android:outlineAmbientShadowColor="@color/colorPrimaryDark"
+                android:outlineSpotShadowColor="@color/colorPrimaryDark"
+                android:src="@drawable/ic_round_update_24px"
+                app:borderWidth="0dp"
+                android:backgroundTint="@color/colorPrimaryDark"
+                android:layout_margin="16dp" />
+
+        <RelativeLayout
+                android:id="@+id/home_loading"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="@color/white">
+
+            <com.airbnb.lottie.LottieAnimationView
+                    android:id="@+id/home_loading_lootie"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    app:lottie_autoPlay="true"
+                    app:lottie_fileName="loading.json"
+                    app:lottie_loop="true" />
+        </RelativeLayout>
+
     </RelativeLayout>
 
-</RelativeLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
 
